@@ -1,0 +1,937 @@
+<!DOCTYPE html>
+<html lang="et">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SL Tervis — Sentifoli &amp; Lindström</title>
+<!-- MOCK / DESIGN CONCEPT — not for production deployment. SEO checklist intentionally waived for concept phase. -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&display=swap" rel="stylesheet">
+<style>
+
+/* ═══════════════════════════════════════════════════════════════
+   RESET & BASE
+═══════════════════════════════════════════════════════════════ */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+/* ═══════════════════════════════════════════════════════════════
+   DESIGN TOKENS
+═══════════════════════════════════════════════════════════════ */
+:root {
+  /* Paper */
+  --paper:       #f4efe6;
+  --paper-mid:   #ede8da;
+  --paper-deep:  #e5ded0;
+  /* Ink */
+  --ink:         #1c1712;
+  --ink-mid:     #3e3328;
+  --ink-soft:    #6e5d4d;
+  /* Accent */
+  --ox:          #5e1f24;    /* oxblood / burgundy */
+  --ox-dim:      #7a2a30;
+  /* Rules */
+  --rule-faint:  rgba(28, 23, 18, 0.10);
+  --rule:        rgba(28, 23, 18, 0.20);
+  --rule-mid:    rgba(28, 23, 18, 0.32);
+  --rule-strong: rgba(28, 23, 18, 0.60);
+  /* Inverse (on dark) */
+  --inv:         #f4efe6;
+  --inv-soft:    rgba(244, 239, 230, 0.60);
+  --inv-muted:   rgba(244, 239, 230, 0.32);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   BODY
+═══════════════════════════════════════════════════════════════ */
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: 'EB Garamond', Georgia, 'Times New Roman', serif;
+  font-size: 17px;
+  line-height: 1.72;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   LAYOUT
+═══════════════════════════════════════════════════════════════ */
+.wrap        { max-width: 1200px; margin: 0 auto; padding: 0 60px; }
+.wrap-narrow { max-width:  860px; margin: 0 auto; padding: 0 60px; }
+
+/* ═══════════════════════════════════════════════════════════════
+   TYPOGRAPHIC UTILITIES
+═══════════════════════════════════════════════════════════════ */
+.sc {
+  font-family: 'EB Garamond', serif;
+  font-size: 12px;
+  font-variant: small-caps;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--ox);
+  font-weight: 500;
+}
+
+/* Section label row */
+.sec-row {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  margin-bottom: 52px;
+}
+.sec-row .sc { white-space: nowrap; flex-shrink: 0; }
+.sec-row-rule { flex: 1; height: 1px; background: var(--rule-mid); }
+
+/* ═══════════════════════════════════════════════════════════════
+   NAVIGATION
+═══════════════════════════════════════════════════════════════ */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 200;
+  background: rgba(244, 239, 230, 0.94);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--rule-mid);
+}
+
+.nav-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 60px;
+  height: 56px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav-wordmark {
+  font-family: 'EB Garamond', serif;
+  font-size: 15px;
+  font-weight: 500;
+  letter-spacing: 0.38em;
+  text-transform: uppercase;
+  color: var(--ink);
+  text-decoration: none;
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 44px;
+}
+
+.nav-links a {
+  font-family: 'EB Garamond', serif;
+  font-size: 13px;
+  font-variant: small-caps;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--ink-mid);
+  text-decoration: none;
+  transition: color 0.22s ease;
+  padding-bottom: 2px;
+  border-bottom: 1px solid transparent;
+}
+
+.nav-links a:hover {
+  color: var(--ox);
+  border-bottom-color: var(--ox);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   MASTHEAD — NEWSPAPER FRONT PAGE
+═══════════════════════════════════════════════════════════════ */
+.masthead-section {
+  padding-top: 56px; /* nav clearance */
+}
+
+/* Dateline ribbon */
+.masthead-dateline {
+  border-bottom: 1px solid var(--rule-mid);
+  background: var(--paper-mid);
+  text-align: center;
+  padding: 12px 0;
+}
+
+.masthead-dateline span {
+  font-family: 'EB Garamond', serif;
+  font-size: 11.5px;
+  font-variant: small-caps;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+
+/* Masthead centering zone */
+.masthead-crown {
+  padding: 52px 60px 44px;
+  text-align: center;
+}
+
+/* Double rule component */
+.dbl-rule {
+  max-width: 720px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.dbl-rule-line {
+  display: block;
+  background: var(--rule-strong);
+  border: none;
+}
+
+.dbl-rule--top .dbl-rule-line:first-child  { height: 2px; }
+.dbl-rule--top .dbl-rule-line:last-child   { height: 1px; }
+.dbl-rule--bot .dbl-rule-line:first-child  { height: 1px; }
+.dbl-rule--bot .dbl-rule-line:last-child   { height: 2px; }
+
+/* The logotype itself */
+.masthead-logotype {
+  display: block;
+  font-family: 'EB Garamond', serif;
+  font-size: clamp(80px, 12vw, 152px);
+  font-weight: 500;
+  letter-spacing: 0.20em;
+  text-transform: uppercase;
+  color: var(--ink);
+  line-height: 1.0;
+  padding: 30px 0 26px;
+  /* optical tracking for wide display */
+  word-spacing: 0.16em;
+}
+
+.masthead-fleuron {
+  display: block;
+  color: var(--ox);
+  font-size: 22px;
+  opacity: 0.65;
+  margin: 16px 0 10px;
+  line-height: 1;
+}
+
+.masthead-sub {
+  font-family: 'EB Garamond', serif;
+  font-size: 13px;
+  font-variant: small-caps;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--ink-mid);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   HERO — THREE-COLUMN BROADSHEET
+═══════════════════════════════════════════════════════════════ */
+.hero-broadsheet {
+  border-top: 1px solid var(--rule-mid);
+  display: grid;
+  grid-template-columns: 5fr 1px 4fr 1px 3fr;
+  align-items: start;
+}
+
+.hero-col {
+  padding: 56px 56px 72px;
+}
+
+.hero-col:first-child { padding-left: 60px; }
+.hero-col:last-child  { padding-right: 60px; }
+
+.hero-vrule {
+  background: var(--rule);
+  align-self: stretch;
+}
+
+/* Lead headline */
+.hero-hed {
+  font-family: 'EB Garamond', serif;
+  font-size: clamp(28px, 3.2vw, 42px);
+  font-weight: 400;
+  line-height: 1.16;
+  color: var(--ink);
+  margin-bottom: 20px;
+  hyphens: auto;
+  overflow-wrap: break-word;
+}
+
+.hero-hed em {
+  font-style: italic;
+  color: var(--ox);
+}
+
+.hero-deck {
+  font-size: 16.5px;
+  color: var(--ink-mid);
+  line-height: 1.72;
+  text-align: justify;
+  hyphens: auto;
+  overflow-wrap: break-word;
+}
+
+/* Statistics column */
+.hero-stats { display: flex; flex-direction: column; }
+
+.hero-stat {
+  padding: 20px 0;
+  border-bottom: 1px solid var(--rule);
+}
+
+.hero-stat:first-child { border-top: 1px solid var(--rule); }
+
+.stat-n {
+  display: block;
+  font-family: 'EB Garamond', serif;
+  font-size: 54px;
+  font-weight: 400;
+  line-height: 1.0;
+  color: var(--ink);
+}
+
+.stat-lbl {
+  display: block;
+  font-family: 'EB Garamond', serif;
+  font-size: 12px;
+  font-variant: small-caps;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  margin-top: 3px;
+}
+
+/* Pull-quote column */
+.hero-pullquote {
+  border-left: 2px solid var(--ox);
+  padding-left: 22px;
+  margin-bottom: 28px;
+}
+
+.hero-pullquote p {
+  font-family: 'EB Garamond', serif;
+  font-size: 20px;
+  font-style: italic;
+  color: var(--ink);
+  line-height: 1.52;
+}
+
+.hero-note {
+  font-size: 15px;
+  color: var(--ink-soft);
+  line-height: 1.68;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   MANIFESTO
+═══════════════════════════════════════════════════════════════ */
+.manifesto {
+  padding: 108px 0 88px;
+  border-top: 1px solid var(--rule-mid);
+  border-bottom: 1px solid var(--rule-mid);
+}
+
+.manifesto-body {
+  font-family: 'EB Garamond', serif;
+  font-size: clamp(21px, 2.6vw, 30px);
+  font-weight: 400;
+  line-height: 1.65;
+  color: var(--ink);
+  text-align: justify;
+  hyphens: auto;
+  overflow-wrap: break-word;
+}
+
+/* Drop cap */
+.manifesto-body::first-letter {
+  font-family: 'EB Garamond', serif;
+  font-size: 5.8em;
+  font-weight: 500;
+  line-height: 0.76;
+  float: left;
+  margin: 0.04em 0.12em 0 0;
+  color: var(--ox);
+  padding-top: 0.04em;
+}
+
+.manifesto-body em {
+  font-style: italic;
+  color: var(--ox);
+}
+
+.manifesto-orn {
+  text-align: center;
+  color: var(--ox);
+  font-size: 24px;
+  opacity: 0.50;
+  margin-top: 60px;
+  line-height: 1;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   KLIINIKUD — EDITORIAL ENTRIES
+═══════════════════════════════════════════════════════════════ */
+.kliinikud {
+  padding: 100px 0;
+  border-bottom: 1px solid var(--rule-mid);
+}
+
+.kliinikud-hed {
+  font-family: 'EB Garamond', serif;
+  font-size: clamp(28px, 3.4vw, 42px);
+  font-weight: 400;
+  line-height: 1.15;
+  color: var(--ink);
+  max-width: 28ch;
+  margin-bottom: 40px;
+}
+
+/* 2×2 editorial grid */
+.entry-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  border-top: 1px solid var(--rule-mid);
+  border-left: 1px solid var(--rule-mid);
+}
+
+.entry {
+  border-right: 1px solid var(--rule-mid);
+  border-bottom: 1px solid var(--rule-mid);
+  padding: 52px 56px;
+  transition: background 0.30s ease;
+  position: relative;
+}
+
+.entry:hover {
+  background: rgba(94, 31, 36, 0.024);
+}
+
+/* Thin accent line on hover */
+.entry::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 0; height: 2px;
+  background: var(--ox);
+  transition: width 0.40s ease;
+}
+.entry:hover::before { width: 100%; }
+
+.entry-roman {
+  display: block;
+  font-family: 'EB Garamond', serif;
+  font-size: 12px;
+  font-variant: small-caps;
+  letter-spacing: 0.30em;
+  text-transform: uppercase;
+  color: var(--ox);
+  margin-bottom: 18px;
+}
+
+.entry-hed {
+  font-family: 'EB Garamond', serif;
+  font-size: 29px;
+  font-weight: 500;
+  line-height: 1.14;
+  color: var(--ink);
+  letter-spacing: 0.01em;
+  margin-bottom: 16px;
+}
+
+.entry-body {
+  font-size: 15.5px;
+  color: var(--ink-mid);
+  line-height: 1.70;
+  text-align: justify;
+  hyphens: auto;
+  overflow-wrap: break-word;
+  max-width: 42ch;
+}
+
+.entry-link {
+  display: inline-block;
+  margin-top: 24px;
+  font-family: 'EB Garamond', serif;
+  font-size: 12.5px;
+  font-variant: small-caps;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--ox);
+  text-decoration: none;
+  border-bottom: 1px solid var(--ox);
+  padding-bottom: 3px;
+  transition: opacity 0.22s;
+}
+
+.entry-link:hover { opacity: 0.55; }
+
+/* ═══════════════════════════════════════════════════════════════
+   ADVISORY / NÕUSTAMINE
+═══════════════════════════════════════════════════════════════ */
+.advisory {
+  padding: 100px 0;
+  background: var(--paper-mid);
+  border-bottom: 1px solid var(--rule-mid);
+}
+
+.advisory-grid {
+  display: grid;
+  grid-template-columns: 3fr 1px 2fr;
+  align-items: start;
+  gap: 0;
+}
+
+.adv-main { padding-right: 72px; }
+
+.adv-hed {
+  font-family: 'EB Garamond', serif;
+  font-size: clamp(26px, 3.2vw, 40px);
+  font-weight: 400;
+  line-height: 1.20;
+  color: var(--ink);
+  margin: 18px 0 22px;
+}
+
+.adv-body {
+  font-size: 16.5px;
+  color: var(--ink-mid);
+  line-height: 1.72;
+  text-align: justify;
+  hyphens: auto;
+  overflow-wrap: break-word;
+}
+
+.adv-vrule {
+  background: var(--rule-mid);
+  align-self: stretch;
+}
+
+.adv-aside { padding-left: 72px; }
+
+.adv-pullquote {
+  font-family: 'EB Garamond', serif;
+  font-size: 21px;
+  font-style: italic;
+  font-weight: 400;
+  color: var(--ink);
+  line-height: 1.50;
+  border-left: 2px solid var(--ox);
+  padding-left: 22px;
+  margin-bottom: 26px;
+}
+
+.adv-pullquote::before { content: '\201C'; color: var(--ox); }
+.adv-pullquote::after  { content: '\201D'; color: var(--ox); }
+
+.adv-caption {
+  font-size: 15px;
+  color: var(--ink-soft);
+  line-height: 1.65;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   HERITAGE STRIP
+═══════════════════════════════════════════════════════════════ */
+.heritage {
+  padding: 84px 0;
+  text-align: center;
+  border-bottom: 1px solid var(--rule-mid);
+}
+
+.heritage-orn {
+  display: block;
+  color: var(--ox);
+  font-size: 24px;
+  opacity: 0.55;
+  margin-bottom: 26px;
+  line-height: 1;
+}
+
+.heritage-quote {
+  font-family: 'EB Garamond', serif;
+  font-size: clamp(20px, 2.4vw, 28px);
+  font-style: italic;
+  font-weight: 400;
+  color: var(--ink);
+  max-width: 40ch;
+  margin: 0 auto;
+  line-height: 1.55;
+}
+
+.heritage-cap {
+  display: block;
+  margin-top: 26px;
+  font-family: 'EB Garamond', serif;
+  font-size: 12px;
+  font-variant: small-caps;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   FOOTER
+═══════════════════════════════════════════════════════════════ */
+footer {
+  background: var(--ink);
+  color: var(--inv-soft);
+  padding: 80px 0 52px;
+}
+
+.foot-grid {
+  display: grid;
+  grid-template-columns: 5fr 1px 2fr 1px 2fr;
+  align-items: start;
+  margin-bottom: 56px;
+}
+
+.foot-col { padding: 0 52px; }
+.foot-col:first-child { padding-left: 0; }
+.foot-col:last-child  { padding-right: 0; }
+
+.foot-vrule {
+  background: rgba(244, 239, 230, 0.08);
+  align-self: stretch;
+}
+
+.foot-wordmark {
+  display: block;
+  font-family: 'EB Garamond', serif;
+  font-size: 16px;
+  font-weight: 500;
+  letter-spacing: 0.36em;
+  text-transform: uppercase;
+  color: var(--inv);
+  text-decoration: none;
+  margin-bottom: 18px;
+}
+
+.foot-tagline {
+  font-size: 14.5px;
+  color: rgba(244, 239, 230, 0.46);
+  line-height: 1.68;
+  max-width: 34ch;
+}
+
+footer h4 {
+  font-family: 'EB Garamond', serif;
+  font-size: 12px;
+  font-variant: small-caps;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  color: rgba(244, 239, 230, 0.32);
+  margin-bottom: 18px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid rgba(244, 239, 230, 0.08);
+}
+
+footer ul { list-style: none; }
+footer li { margin-bottom: 11px; }
+
+footer a {
+  font-size: 15.5px;
+  color: rgba(244, 239, 230, 0.60);
+  text-decoration: none;
+  transition: color 0.22s;
+}
+
+footer a:hover { color: var(--inv); }
+
+.foot-bottom {
+  border-top: 1px solid rgba(244, 239, 230, 0.08);
+  padding-top: 30px;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
+  font-family: 'EB Garamond', serif;
+  font-size: 12.5px;
+  color: rgba(244, 239, 230, 0.28);
+  letter-spacing: 0.06em;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   RESPONSIVE
+═══════════════════════════════════════════════════════════════ */
+@media (max-width: 1100px) {
+  .wrap, .wrap-narrow { padding: 0 40px; }
+  .nav-inner { padding: 0 40px; }
+  .hero-col, .hero-col:first-child, .hero-col:last-child { padding: 44px 40px; }
+}
+
+@media (max-width: 900px) {
+  .hero-broadsheet {
+    grid-template-columns: 1fr;
+  }
+  .hero-vrule { display: none; }
+  .hero-col, .hero-col:first-child, .hero-col:last-child {
+    padding: 40px;
+    border-bottom: 1px solid var(--rule);
+  }
+  .hero-col:last-child { border-bottom: none; }
+  .advisory-grid { grid-template-columns: 1fr; gap: 0; }
+  .adv-main { padding-right: 0; padding-bottom: 48px; border-bottom: 1px solid var(--rule); margin-bottom: 48px; }
+  .adv-vrule { display: none; }
+  .adv-aside { padding-left: 0; }
+  .foot-grid { grid-template-columns: 1fr; gap: 0; }
+  .foot-vrule { display: none; }
+  .foot-col, .foot-col:first-child, .foot-col:last-child {
+    padding: 0 0 40px;
+  }
+  .foot-col:last-child { padding-bottom: 0; }
+}
+
+@media (max-width: 680px) {
+  .wrap, .wrap-narrow { padding: 0 24px; }
+  .nav-inner { padding: 0 24px; }
+  .nav-links { display: none; }
+  .masthead-crown { padding: 36px 24px 32px; }
+  .entry-grid { grid-template-columns: 1fr; border-left: none; }
+  .entry { padding: 40px 0; border-right: none; }
+  .entry::before { display: none; }
+  .entry-body { max-width: 100%; }
+  .adv-main { padding-right: 0; }
+  .dbl-rule { max-width: 100%; }
+}
+
+</style>
+</head>
+<body>
+
+<!-- ─── NAVIGATION ────────────────────────────────────────────── -->
+<nav>
+  <div class="nav-inner">
+    <a class="nav-wordmark" href="#">SL&nbsp;&nbsp;Tervis</a>
+    <ul class="nav-links">
+      <li><a href="#kliinikud">Kliinikud</a></li>
+      <li><a href="#noustamine">Nõustamine</a></li>
+      <li><a href="#meist">Meist</a></li>
+      <li><a href="#kontakt">Kontakt</a></li>
+    </ul>
+  </div>
+</nav>
+
+
+<!-- ─── MASTHEAD ──────────────────────────────────────────────── -->
+<div class="masthead-section">
+
+  <!-- Dateline -->
+  <div class="masthead-dateline">
+    <span>Erakliiniku &amp; nõustamise grupp &nbsp;·&nbsp; Eesti &amp; Soome &nbsp;·&nbsp; Alates 1993</span>
+  </div>
+
+  <!-- Crown: double rules + logotype -->
+  <div class="masthead-crown">
+
+    <div class="dbl-rule dbl-rule--top">
+      <span class="dbl-rule-line"></span>
+      <span class="dbl-rule-line"></span>
+    </div>
+
+    <span class="masthead-logotype">SL&nbsp;&nbsp;Tervis</span>
+
+    <div class="dbl-rule dbl-rule--bot">
+      <span class="dbl-rule-line"></span>
+      <span class="dbl-rule-line"></span>
+    </div>
+
+    <span class="masthead-fleuron">❦</span>
+    <span class="masthead-sub">Sentifoli &amp; Lindström &nbsp;·&nbsp; MCMXCIII</span>
+
+  </div>
+
+  <!-- Three-column broadsheet hero -->
+  <div class="hero-broadsheet">
+
+    <!-- Col 1 — Headline & deck -->
+    <div class="hero-col">
+      <h1 class="hero-hed">Meditsiin, mille mõõdupuu on <em>usaldus.</em></h1>
+      <p class="hero-deck">SL Tervis ühendab Sentifoli &amp; Lindströmi kliinikud ja nõustamispraktika. Me ei püüa olla suurimad. Me oleme hoolikaimad.</p>
+    </div>
+
+    <div class="hero-vrule"></div>
+
+    <!-- Col 2 — Statistics -->
+    <div class="hero-col">
+      <div class="hero-stats">
+        <div class="hero-stat">
+          <span class="stat-n">1993</span>
+          <span class="stat-lbl">Perekondlik meditsiinitraditsioon</span>
+        </div>
+        <div class="hero-stat">
+          <span class="stat-n">4</span>
+          <span class="stat-lbl">Kliinilist suunda</span>
+        </div>
+        <div class="hero-stat">
+          <span class="stat-n">150+</span>
+          <span class="stat-lbl">Spetsialisti meie majades</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-vrule"></div>
+
+    <!-- Col 3 — Pull-quote & note -->
+    <div class="hero-col">
+      <div class="hero-pullquote">
+        <p>Me ei püüa olla suurimad. Me oleme hoolikaimad.</p>
+      </div>
+      <p class="hero-note">Kolm põlvkonda arste. Üks veendumus — patsient ei ole kunagi juhtum, vaid inimene.</p>
+    </div>
+
+  </div><!-- /.hero-broadsheet -->
+
+</div><!-- /.masthead-section -->
+
+
+<!-- ─── MANIFESTO ─────────────────────────────────────────────── -->
+<section class="manifesto" id="meist">
+  <div class="wrap-narrow">
+
+    <div class="sec-row">
+      <span class="sc">Meie vaade</span>
+      <span class="sec-row-rule"></span>
+    </div>
+
+    <p class="manifesto-body">Hea meditsiin ei kiirusta. Ta kuulab, kaalub ja otsustab — ning võtab vastutuse ka siis, kui keegi ei vaata. <em>Nii oleme töötanud kolm põlvkonda.</em></p>
+
+    <div class="manifesto-orn">§</div>
+
+  </div>
+</section>
+
+
+<!-- ─── KLIINIKUD ─────────────────────────────────────────────── -->
+<section class="kliinikud" id="kliinikud">
+  <div class="wrap">
+
+    <div class="sec-row">
+      <span class="sc">Meie kliinikud</span>
+      <span class="sec-row-rule"></span>
+    </div>
+
+    <h2 class="kliinikud-hed">Neli suunda. Üks standard.</h2>
+
+    <div class="entry-grid">
+
+      <!-- I -->
+      <div class="entry">
+        <span class="entry-roman">I</span>
+        <h3 class="entry-hed">SL Tervisekeskus</h3>
+        <p class="entry-body">Personaalne tervisekeskus, kus arst tunneb teid nime, mitte järjekorranumbri järgi. Perearstiabi ja eriarstiabi ühe katuse all.</p>
+        <a class="entry-link" href="#">sltervisekeskus.ee</a>
+      </div>
+
+      <!-- II -->
+      <div class="entry">
+        <span class="entry-roman">II</span>
+        <h3 class="entry-hed">Valvekliinik</h3>
+        <p class="entry-body">Erakorraline abi ilma ootamiseta. Avatud siis, kui teised ei ole — sest tervis ei vali kellaaega.</p>
+        <a class="entry-link" href="#">valvekliinik.ee</a>
+      </div>
+
+      <!-- III -->
+      <div class="entry">
+        <span class="entry-roman">III</span>
+        <h3 class="entry-hed">Élan Clinic</h3>
+        <p class="entry-body">Metaboolse tervise ja kaalulangetuse kliinik. Teaduspõhine ravi ja tulemuse hoidmine — mitte trendid.</p>
+        <a class="entry-link" href="#">elanclinic.ee</a>
+      </div>
+
+      <!-- IV -->
+      <div class="entry">
+        <span class="entry-roman">IV</span>
+        <h3 class="entry-hed">Töötervishoid</h3>
+        <p class="entry-body">Töötervishoid ettevõtetele, kes mõistavad, et nende väärtuslikem vara käib igal hommikul uksest sisse.</p>
+        <a class="entry-link" href="#">Loe lähemalt</a>
+      </div>
+
+    </div><!-- /.entry-grid -->
+
+  </div>
+</section>
+
+
+<!-- ─── NÕUSTAMINE ────────────────────────────────────────────── -->
+<section class="advisory" id="noustamine">
+  <div class="wrap">
+    <div class="advisory-grid">
+
+      <div class="adv-main">
+        <div class="sec-row">
+          <span class="sc">Nõustamine</span>
+          <span class="sec-row-rule"></span>
+        </div>
+        <h2 class="adv-hed">Aitame ehitada kliinikuid, mis kestavad.</h2>
+        <p class="adv-body">Oleme kolme aastakümne jooksul rajanud ja juhtinud tervishoiuettevõtteid Eestis ja Soomes. Nõustame valitud ettevõtteid, kes soovivad ehitada tervishoiuteenust, mida nad ise oma perele sooviksid.</p>
+      </div>
+
+      <div class="adv-vrule"></div>
+
+      <div class="adv-aside">
+        <div class="adv-pullquote">Me ei nõusta paljusid. Me nõustame hästi.</div>
+        <p class="adv-caption">Koostöö algab vestlusest. Kirjutage meile — vastame isiklikult.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ─── HERITAGE ──────────────────────────────────────────────── -->
+<section class="heritage">
+  <div class="wrap">
+    <span class="heritage-orn">❦</span>
+    <p class="heritage-quote">Kolm põlvkonda arste. Üks veendumus — patsient ei ole kunagi juhtum, vaid inimene.</p>
+    <span class="heritage-cap">Alates 1993</span>
+  </div>
+</section>
+
+
+<!-- ─── FOOTER ────────────────────────────────────────────────── -->
+<footer id="kontakt">
+  <div class="wrap">
+
+    <div class="foot-grid">
+
+      <div class="foot-col">
+        <a class="foot-wordmark" href="#">SL&nbsp;&nbsp;Tervis</a>
+        <p class="foot-tagline">Sentifoli &amp; Lindström — tervishoiugrupp, mille juured on perekonnas ja mõõdupuu usalduses.</p>
+      </div>
+
+      <div class="foot-vrule"></div>
+
+      <div class="foot-col">
+        <h4>Kliinikud</h4>
+        <ul>
+          <li><a href="#">SL Tervisekeskus</a></li>
+          <li><a href="#">Valvekliinik</a></li>
+          <li><a href="#">Élan Clinic</a></li>
+          <li><a href="#">Töötervishoid</a></li>
+        </ul>
+      </div>
+
+      <div class="foot-vrule"></div>
+
+      <div class="foot-col">
+        <h4>Kontakt</h4>
+        <ul>
+          <li><a href="#">Sepapaja 12/1, Tallinn</a></li>
+          <li><a href="#">info@sltervis.ee</a></li>
+        </ul>
+      </div>
+
+    </div><!-- /.foot-grid -->
+
+    <div class="foot-bottom">
+      <span>© 2026 Sentifoli &amp; Lindström OÜ</span>
+      <span>Kujunduskontsept — mitte avalik leht</span>
+    </div>
+
+  </div>
+</footer>
+
+</body>
+</html>
