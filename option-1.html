@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="et">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SL Tervis — Sentifoli &amp; Lindström</title>
+<meta name="description" content="SL Tervis ühendab Sentifoli & Lindströmi kliinikud: SL Tervisekeskus, Valvekliinik, Élan Clinic ja töötervishoid.">
+<!-- MOCK / DESIGN CONCEPT — not for production deployment. SEO checklist intentionally deferred. -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ivory:#f6f3ec;
+    --ivory-deep:#efeadf;
+    --ink:#1b1a17;
+    --ink-soft:#4a463f;
+    --green:#1e3428;
+    --green-soft:#2c4a39;
+    --bronze:#9c7c4d;
+    --hairline:rgba(27,26,23,.14);
+    --hairline-light:rgba(246,243,236,.18);
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--ivory);
+    color:var(--ink);
+    font-family:'Inter',sans-serif;
+    font-weight:300;
+    line-height:1.7;
+    -webkit-font-smoothing:antialiased;
+  }
+  .serif{font-family:'Cormorant Garamond',serif;}
+  .eyebrow{
+    font-size:11px;
+    letter-spacing:.32em;
+    text-transform:uppercase;
+    color:var(--bronze);
+    font-weight:500;
+  }
+  .wrap{max-width:1120px;margin:0 auto;padding:0 40px;}
+
+  /* NAV */
+  nav{
+    position:fixed;top:0;left:0;right:0;z-index:50;
+    background:rgba(246,243,236,.88);
+    backdrop-filter:blur(12px);
+    border-bottom:1px solid var(--hairline);
+  }
+  .nav-inner{
+    max-width:1120px;margin:0 auto;padding:22px 40px;
+    display:flex;justify-content:space-between;align-items:center;
+  }
+  .wordmark{
+    font-family:'Cormorant Garamond',serif;
+    font-size:21px;letter-spacing:.14em;font-weight:600;
+    color:var(--ink);text-decoration:none;
+  }
+  .wordmark span{color:var(--bronze);}
+  .nav-links{display:flex;gap:36px;}
+  .nav-links a{
+    font-size:11.5px;letter-spacing:.18em;text-transform:uppercase;
+    color:var(--ink-soft);text-decoration:none;font-weight:400;
+    transition:color .3s;
+  }
+  .nav-links a:hover{color:var(--bronze);}
+
+  /* HERO */
+  header{
+    min-height:92vh;
+    display:flex;align-items:center;
+    padding:160px 0 100px;
+    position:relative;
+  }
+  header::after{
+    content:"";
+    position:absolute;bottom:0;left:40px;right:40px;
+    max-width:1040px;margin:0 auto;
+    border-bottom:1px solid var(--hairline);
+  }
+  .hero h1{
+    font-family:'Cormorant Garamond',serif;
+    font-weight:400;
+    font-size:clamp(44px,6.4vw,84px);
+    line-height:1.08;
+    letter-spacing:.01em;
+    max-width:15ch;
+    margin:28px 0 36px;
+  }
+  .hero h1 em{font-style:italic;color:var(--green);}
+  .hero p{
+    max-width:52ch;font-size:16.5px;color:var(--ink-soft);
+  }
+  .hero-meta{
+    margin-top:64px;display:flex;gap:56px;flex-wrap:wrap;
+  }
+  .hero-meta div{font-size:12px;letter-spacing:.08em;color:var(--ink-soft);}
+  .hero-meta strong{
+    display:block;font-family:'Cormorant Garamond',serif;
+    font-size:30px;font-weight:500;color:var(--ink);letter-spacing:0;
+  }
+
+  /* MANIFESTO */
+  .manifesto{padding:130px 0;}
+  .manifesto .wrap{display:grid;grid-template-columns:1fr 2fr;gap:60px;}
+  .manifesto p.lead{
+    font-family:'Cormorant Garamond',serif;
+    font-size:clamp(26px,3vw,36px);
+    line-height:1.45;font-weight:400;
+    color:var(--ink);
+  }
+  .manifesto p.lead em{color:var(--bronze);font-style:italic;}
+
+  /* DIVISIONS */
+  .divisions{background:var(--green);color:var(--ivory);padding:130px 0;}
+  .divisions .eyebrow{color:var(--bronze);}
+  .divisions h2{
+    font-family:'Cormorant Garamond',serif;font-weight:400;
+    font-size:clamp(34px,4vw,52px);margin:22px 0 70px;max-width:20ch;
+    line-height:1.15;
+  }
+  .div-grid{display:grid;grid-template-columns:1fr 1fr;border-top:1px solid var(--hairline-light);}
+  .div-card{
+    padding:52px 44px 56px;
+    border-bottom:1px solid var(--hairline-light);
+    transition:background .4s;
+  }
+  .div-card:nth-child(odd){border-right:1px solid var(--hairline-light);}
+  .div-card:hover{background:rgba(246,243,236,.04);}
+  .div-card .num{
+    font-size:11px;letter-spacing:.3em;color:var(--bronze);
+  }
+  .div-card h3{
+    font-family:'Cormorant Garamond',serif;font-weight:500;
+    font-size:30px;margin:16px 0 14px;letter-spacing:.02em;
+  }
+  .div-card p{font-size:14.5px;color:rgba(246,243,236,.72);max-width:44ch;}
+  .div-card a{
+    display:inline-block;margin-top:26px;
+    font-size:11px;letter-spacing:.24em;text-transform:uppercase;
+    color:var(--ivory);text-decoration:none;
+    border-bottom:1px solid var(--bronze);padding-bottom:6px;
+    transition:color .3s;
+  }
+  .div-card a:hover{color:var(--bronze);}
+
+  /* ADVISORY */
+  .advisory{padding:140px 0;background:var(--ivory-deep);}
+  .advisory .wrap{display:grid;grid-template-columns:2fr 1fr;gap:80px;align-items:start;}
+  .advisory h2{
+    font-family:'Cormorant Garamond',serif;font-weight:400;
+    font-size:clamp(32px,3.6vw,46px);margin:22px 0 26px;line-height:1.2;
+  }
+  .advisory p{color:var(--ink-soft);font-size:16px;max-width:56ch;}
+  .advisory .aside{
+    border-left:1px solid var(--hairline);padding-left:36px;
+    font-size:14px;color:var(--ink-soft);
+  }
+  .advisory .aside p{font-size:14px;margin-bottom:18px;}
+  .advisory .aside .serif{font-size:19px;color:var(--ink);font-style:italic;}
+
+  /* HERITAGE STRIP */
+  .heritage{padding:110px 0;}
+  .heritage .wrap{text-align:center;}
+  .heritage p{
+    font-family:'Cormorant Garamond',serif;
+    font-size:clamp(24px,2.8vw,32px);font-weight:400;font-style:italic;
+    color:var(--green);max-width:34ch;margin:26px auto 0;line-height:1.5;
+  }
+
+  /* CONTACT / FOOTER */
+  footer{background:var(--ink);color:rgba(246,243,236,.65);padding:100px 0 60px;}
+  .foot-grid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:60px;margin-bottom:80px;}
+  footer .wordmark{color:var(--ivory);font-size:24px;}
+  footer h4{
+    font-size:11px;letter-spacing:.26em;text-transform:uppercase;
+    color:var(--bronze);font-weight:500;margin-bottom:20px;
+  }
+  footer a{color:rgba(246,243,236,.65);text-decoration:none;font-size:14px;transition:color .3s;}
+  footer a:hover{color:var(--ivory);}
+  footer li{list-style:none;margin-bottom:10px;}
+  .foot-note{
+    border-top:1px solid rgba(246,243,236,.12);padding-top:32px;
+    font-size:12px;letter-spacing:.06em;color:rgba(246,243,236,.4);
+    display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;
+  }
+
+  @media(max-width:820px){
+    .wrap{padding:0 24px;}
+    .nav-links{display:none;}
+    .manifesto .wrap,.advisory .wrap{grid-template-columns:1fr;gap:36px;}
+    .div-grid{grid-template-columns:1fr;}
+    .div-card:nth-child(odd){border-right:none;}
+    .foot-grid{grid-template-columns:1fr;gap:40px;}
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a class="wordmark" href="#">SL&nbsp;<span>·</span>&nbsp;TERVIS</a>
+    <div class="nav-links">
+      <a href="#kliinikud">Kliinikud</a>
+      <a href="#noustamine">Nõustamine</a>
+      <a href="#meist">Meist</a>
+      <a href="#kontakt">Kontakt</a>
+    </div>
+  </div>
+</nav>
+
+<header>
+  <div class="wrap hero">
+    <div class="eyebrow">Sentifoli &amp; Lindström</div>
+    <h1>Meditsiin, mille mõõdupuu on <em>usaldus.</em></h1>
+    <p>SL Tervis ühendab Sentifoli &amp; Lindströmi kliinikud ja nõustamispraktika.
+    Me ei püüa olla suurimad. Me oleme hoolikaimad.</p>
+    <div class="hero-meta">
+      <div><strong>1993</strong>perekondlik meditsiinitraditsioon</div>
+      <div><strong>4</strong>kliinilist suunda</div>
+      <div><strong>150+</strong>spetsialisti meie majades</div>
+    </div>
+  </div>
+</header>
+
+<section class="manifesto" id="meist">
+  <div class="wrap">
+    <div class="eyebrow">Meie vaade</div>
+    <p class="lead">Hea meditsiin ei kiirusta. Ta kuulab, kaalub ja otsustab —
+    ning võtab vastutuse ka siis, kui keegi ei vaata. <em>Nii oleme töötanud kolm põlvkonda.</em></p>
+  </div>
+</section>
+
+<section class="divisions" id="kliinikud">
+  <div class="wrap">
+    <div class="eyebrow">Meie kliinikud</div>
+    <h2>Neli suunda. Üks standard.</h2>
+    <div class="div-grid">
+      <div class="div-card">
+        <div class="num">01</div>
+        <h3>SL Tervisekeskus</h3>
+        <p>Personaalne tervisekeskus, kus arst tunneb teid nime, mitte järjekorranumbri järgi. Perearstiabi ja eriarstiabi ühe katuse all.</p>
+        <a href="#">sltervisekeskus.ee</a>
+      </div>
+      <div class="div-card">
+        <div class="num">02</div>
+        <h3>Valvekliinik</h3>
+        <p>Erakorraline abi ilma ootamiseta. Avatud siis, kui teised ei ole — sest tervis ei vali kellaaega.</p>
+        <a href="#">valvekliinik.ee</a>
+      </div>
+      <div class="div-card">
+        <div class="num">03</div>
+        <h3>Élan Clinic</h3>
+        <p>Metaboolse tervise ja kaalulangetuse kliinik. Teaduspõhine ravi ja tulemuse hoidmine — mitte trendid.</p>
+        <a href="#">elanclinic.ee</a>
+      </div>
+      <div class="div-card">
+        <div class="num">04</div>
+        <h3>Töötervishoid</h3>
+        <p>Töötervishoid ettevõtetele, kes mõistavad, et nende väärtuslikem vara käib igal hommikul uksest sisse.</p>
+        <a href="#">Loe lähemalt</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="advisory" id="noustamine">
+  <div class="wrap">
+    <div>
+      <div class="eyebrow">Nõustamine</div>
+      <h2>Aitame ehitada kliinikuid, mis kestavad.</h2>
+      <p>Oleme kolme aastakümne jooksul rajanud ja juhtinud tervishoiuettevõtteid
+      Eestis ja Soomes. Nõustame valitud ettevõtteid, kes soovivad ehitada
+      tervishoiuteenust, mida nad ise oma perele sooviksid.</p>
+    </div>
+    <div class="aside">
+      <p class="serif">"Me ei nõusta paljusid. Me nõustame hästi."</p>
+      <p>Koostöö algab vestlusest. Kirjutage meile — vastame isiklikult.</p>
+    </div>
+  </div>
+</section>
+
+<section class="heritage">
+  <div class="wrap">
+    <div class="eyebrow">Alates 1993</div>
+    <p>Kolm põlvkonda arste. Üks veendumus — patsient ei ole kunagi juhtum, vaid inimene.</p>
+  </div>
+</section>
+
+<footer id="kontakt">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <a class="wordmark" href="#">SL&nbsp;<span>·</span>&nbsp;TERVIS</a>
+        <p style="margin-top:18px;font-size:14px;max-width:34ch;">Sentifoli &amp; Lindström — tervishoiugrupp, mille juured on perekonnas ja mõõdupuu usalduses.</p>
+      </div>
+      <div>
+        <h4>Kliinikud</h4>
+        <ul>
+          <li><a href="#">SL Tervisekeskus</a></li>
+          <li><a href="#">Valvekliinik</a></li>
+          <li><a href="#">Élan Clinic</a></li>
+          <li><a href="#">Töötervishoid</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Kontakt</h4>
+        <ul>
+          <li><a href="#">Sepapaja 12/1, Tallinn</a></li>
+          <li><a href="#">info@sltervis.ee</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-note">
+      <span>© 2026 Sentifoli &amp; Lindström OÜ</span>
+      <span>Kujunduskontsept — mitte avalik leht</span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
