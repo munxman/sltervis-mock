@@ -1,0 +1,114 @@
+{
+  "base_url": "https://sltervisekeskus.ee/",
+  "pages": {
+    "en/": {
+      "tel_links": {
+        "+37259110909": 2,
+        "+3726138887": 1
+      },
+      "text_phones": {
+        "+37259110909": 2,
+        "+3726138887": 1
+      }
+    },
+    "en/materjalid/join-patient-list.html": {
+      "tel_links": {
+        "+37259110909": 3
+      },
+      "text_phones": {
+        "+37259110909": 3,
+        "+3726696630": 1
+      }
+    },
+    "en/register.html": {
+      "tel_links": {
+        "+37259110909": 1,
+        "+3726138887": 1
+      },
+      "text_phones": {
+        "+37259110909": 1
+      }
+    },
+    "fi/": {
+      "tel_links": {
+        "+37259110909": 2,
+        "+3726138887": 1
+      },
+      "text_phones": {
+        "+37259110909": 2,
+        "+3726138887": 1
+      }
+    },
+    "fi/materiaalit/liity-potilaslistalle.html": {
+      "tel_links": {
+        "+37259110909": 1
+      },
+      "text_phones": {
+        "+37259110909": 1
+      }
+    },
+    "fi/rekisteroityminen.html": {
+      "tel_links": {
+        "+37259110909": 1,
+        "+3726138887": 1
+      },
+      "text_phones": {
+        "+37259110909": 1
+      }
+    },
+    "index.html": {
+      "tel_links": {
+        "+37259110909": 3
+      },
+      "text_phones": {
+        "+37259110909": 4
+      }
+    },
+    "materjalid/nimistusse.html": {
+      "tel_links": {
+        "+37259110909": 3
+      },
+      "text_phones": {
+        "+37259110909": 3,
+        "+3726696630": 1
+      }
+    },
+    "registreerumine.html": {
+      "tel_links": {
+        "+37259110909": 1,
+        "+3726138887": 1
+      },
+      "text_phones": {
+        "+37259110909": 1
+      }
+    },
+    "ru/": {
+      "tel_links": {
+        "+37259110909": 2,
+        "+3726138887": 1
+      },
+      "text_phones": {
+        "+37259110909": 2,
+        "+3726138887": 1
+      }
+    },
+    "ru/materjalid/nimistusse.html": {
+      "tel_links": {
+        "+37259110909": 1
+      },
+      "text_phones": {
+        "+37259110909": 1
+      }
+    },
+    "ru/registreerumine.html": {
+      "tel_links": {
+        "+37259110909": 1,
+        "+3726138887": 1
+      },
+      "text_phones": {
+        "+37259110909": 1
+      }
+    }
+  },
+  "saved_at": "2026-11-01T01:24:01"
+}

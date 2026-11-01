@@ -1,0 +1,19 @@
+# Pages to check, relative to the base URL (default https://sltervisekeskus.ee/).
+# One per line. Blank lines and text after '#' are ignored.
+# Keys here are also the keys used in baseline/phones.json and manifest.json.
+
+index.html
+registreerumine.html
+materjalid/nimistusse.html
+
+en/
+en/register.html
+en/materjalid/join-patient-list.html
+
+fi/
+fi/rekisteroityminen.html
+fi/materiaalit/liity-potilaslistalle.html
+
+ru/
+ru/registreerumine.html
+ru/materjalid/nimistusse.html
